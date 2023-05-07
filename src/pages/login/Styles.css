@@ -1,0 +1,149 @@
+/* reutilozo codigo css */
+.avatar_Container,
+.textField_container,
+.container,
+.button_container {
+    display: flex;
+    justify-content: center;
+}
+
+/* contenedor procipal */
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.form {
+    width: 30%;
+    min-width: 350px;
+    background-color: #E2E8E7;
+    height: 65%;
+    margin-top: 5rem;
+    border-radius: 10px;
+}
+
+.avatar_Container {
+    margin-top: 30px;
+}
+
+.avatar {
+    font-size: 60px !important;
+}
+
+.title {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.textField_container {
+    margin-bottom: 40px;
+}
+
+.link_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 0 20px;
+}
+
+.link {
+    font-size: 13px;
+}
+
+.copyright {
+    margin-top: 50px;
+}
+
+
+/* *************************************SignUp *************************************/
+
+
+/* contenedor principal */
+.conteiner {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+/* etiqueta form */
+.formSignUp {
+    width: 30%;
+    min-width: 360px;
+    background-color: #E2E8E7;
+    height: 800px;
+    margin-top: 5rem;
+    border-radius: 10px;
+}
+
+.avatar_Container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.avatar {
+    font-size: 60px !important;
+}
+
+.title {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.input_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 20px
+}
+
+.item {
+    max-width: 38%;
+}
+
+.item__col12 {
+    width: 90%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width:1200px) {
+    .conteiner {
+        height: 140vh;
+    }
+
+    .formSignUp {
+        height: 950px;
+        margin-bottom: 5rem;
+
+    }
+
+
+}
+
+@media screen and (max-width:600px) {
+    .conteiner {
+        height: 180vh;
+    }
+
+    .formSignUp {
+        height: 1250px;
+    }
+
+    .input_container {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item {
+        min-width: 315px;
+    }
+
+}

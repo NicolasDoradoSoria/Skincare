@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import AppRouter from './router/AppRouter'
+import { BrowserRouter as Router } from "react-router-dom";
+import UserState from "./context/userContext/UserState";
+import SnackbarState from "./context/snackbarContext/SnackbarState";
+import ProductState from "./context/productsContext/ProductState";
+import ImagesState from './context/imagesContext/imagesState';
+import FavoritesState from './context/favoriteContext/FavoriteState';
+import Layout from './pages/header/views/Layout';
+import CategoryState from './context/categoryContext/CategoryState';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <SnackbarState>
+        <UserState>
+          <ProductState>
+            <ImagesState>
+              <FavoritesState>
+                <CategoryState>
+                  <Router>
+                    <Layout>
+                      <AppRouter />
+                    </Layout>
+                  </Router>
+                </CategoryState>
+              </FavoritesState>
+            </ImagesState>
+          </ProductState>
+        </UserState>
+      </SnackbarState>
     </div>
   );
 }

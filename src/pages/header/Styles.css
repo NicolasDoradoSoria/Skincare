@@ -1,0 +1,145 @@
+.header {
+    top: 0;
+    left: auto;
+    right: 0;
+    /* position: fixed; */
+    background: linear-gradient(90deg, rgb(205, 166, 194) 0%, rgb(26, 23, 23) 100%);
+    width: 100%;
+    height: 11vh;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.navbar_container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 2rem;
+
+}
+
+.navbar_item {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.navbar_icon {
+    color: #ffff;
+    margin-top: 5px;
+    margin-left: 5px;
+
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
+
+.navbar_item:hover {
+    background: #B05CAB;
+    opacity: 0.6;
+    border-radius: 4px;
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+
+}
+
+.navbar_item.icon {
+    opacity: 1;
+}
+
+.navbar_link {
+    text-decoration: none;
+    color: #ffff
+}
+
+.navbar_input {
+    background-color: rgba(189, 177, 177, 0.342);
+}
+
+.navbar_badge_icon {
+    color: #ffff;
+}
+
+.menu-icon {
+    display: none;
+}
+
+.dropdown_item {
+    width: 100%;
+    list-style: none;
+    padding: 20px 40px 20px 10px;
+}
+
+.dropdown_item:hover {
+    background: #1888ff
+}
+
+.navbar_dropdown {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 80px;
+    background: rgb(205, 166, 194);
+    padding-bottom: 20px;
+    z-index: 1;
+}
+
+.dropdown_link {
+    text-decoration: none;
+    color: #ffff;
+}
+
+@media screen and (max-width:960px) {
+    .menu-icon {
+        display: block;
+        color: #ffff;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        position: absolute;
+        font-size: 1.8rem;
+        transform: translate(-100%, 60%);
+
+    }
+
+    .navbar_container {
+        display: none;
+    }
+
+    .navbar_container.active {
+        background: #242222;
+        left: 0;
+        z-index: 1;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        top: 102px;
+        gap: 20px;
+        margin-left: 0; 
+        height: 70vh;
+
+    }
+
+    .navbar_item {
+        margin-top: 20px;
+    }
+
+    .navbar_item:hover {
+        background-color: #1888ff;
+        border-radius: 0;
+    }
+
+    .navbar_item .navbar_action,
+    .navbar_input,
+    .navbar_icon,
+    .dropdown_clicked {
+        display: none;
+    }
+
+    .navbar_item .shopping {
+        display: none;
+    }
+}

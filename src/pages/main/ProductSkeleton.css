@@ -1,0 +1,17 @@
+.card_skeleton_item {
+    max-width: 450px;
+    flex-basis: 350px;
+    flex-grow: 1;
+    width: 100%;
+    padding: 20px;
+}
+
+.card_skeleton_price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_skeleton_buttom {
+    display: flex;
+    justify-content: center;
+}
