@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import UseContext from "./UseContext";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import UseContext from "../../../hooks/UseContext";
 
 const LIMIT = 6
 
@@ -10,7 +11,8 @@ const UseProductManagement = () => {
   // estos 2 hooks son para el sort
   const [sort, setSort] = useState("name")
   const [type, setType] = useState(1)
-  const { getProducts, totalPages, searchProducts, loading } = UseContext();
+  const { getProducts, totalPages, searchProducts, loading, openSnackbar, msg } = UseContext();
+  const navigate = useNavigate();
 
   const gridClick = () => setIsGrid(!isGrid)
 
@@ -20,7 +22,9 @@ const UseProductManagement = () => {
   }
 
   const pageClick = (newPage) => {
-    setPage(newPage +1)
+    const currentPage = page + newPage
+    setPage(currentPage)
+    localStorage.setItem('currentPage', currentPage.toString())
   }
 
   const nextPaginationDisabled = () => {
@@ -32,15 +36,26 @@ const UseProductManagement = () => {
   }
 
   const searchProductsChange = (e) => {
-    if (e.target.value === "") getProducts({ sort, type, LIMIT, page })
-    else searchProducts(e.target.value)
+    (e.target.value === "") ? getProducts({ sort, type, LIMIT, page }) : searchProducts(e.target.value)
+  }
+// navega 
+  const onAddProductClick = () => {
+    navigate("/agregar-producto")
   }
 
-
+  
   useEffect(() => {
-    getProducts({ sort, type, LIMIT, page })
+    const storedPage = parseInt(localStorage.getItem('currentPage'))
+
+    storedPage ? setPage(storedPage) : setPage(1)
+
+    getProducts({ sort, type, LIMIT, page: storedPage || 1 })
+
+    if (msg) {
+      openSnackbar(msg.msg, msg.category)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, sort])
+  }, [page, sort, msg])
 
   return {
     gridClick,
@@ -54,6 +69,7 @@ const UseProductManagement = () => {
     searchProducts,
     searchProductsChange,
     loading,
+    onAddProductClick
   };
 }
 

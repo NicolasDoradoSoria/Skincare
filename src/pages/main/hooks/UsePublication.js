@@ -1,17 +1,10 @@
-import { useEffect, useContext, useState } from "react";
-import ProductContext from "../../../context/productsContext/ProductContext";
-import FavoriteContext from "../../../context/favoriteContext/FavoriteContext";
+import { useEffect, useState } from "react";
 import { Backdrop, CircularProgress } from "@mui/material";
+import UseContext from "../../../hooks/UseContext";
 
-const PublicationContainer = (id) => {
+const UsePublication = (id) => {
 
-    // context products
-    const productsContext = useContext(ProductContext)
-    const { getProduct, product } = productsContext
-
-    // favoriteContext  
-    const favoriteContext = useContext(FavoriteContext);
-    const { getFavoriteById, isFavorite } = favoriteContext;
+    const { getProduct, product, isFavorite, getFavoriteById } =  UseContext();
 
     //hooks 
     const [quantity, setQuantity] = useState(1)
@@ -64,7 +57,7 @@ const PublicationContainer = (id) => {
     }, [])
 
 
-    if (!product) return <Backdrop open={true} size={50}>
+    if (!product) return <Backdrop open={false} size={50}>
         <CircularProgress color="inherit" />
     </Backdrop>
     const { descripcion, price, name, stock, images, category, checkedOffer, originalPrice } = product;
@@ -91,4 +84,4 @@ const PublicationContainer = (id) => {
 
 }
 
-export default PublicationContainer;
+export default UsePublication;

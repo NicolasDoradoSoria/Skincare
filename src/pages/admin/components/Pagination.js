@@ -9,11 +9,11 @@ export const Pagination = () => {
             <div className="pagination_container xlarge">
                 <div className="pagination">
                     <ul>
-                        <li className="previous"><Button variant="contained" onClick={() =>pageClick(page -1)} disabled={previousPaginationDisabled()}>Previous</Button></li>
+                        <li className="previous"><Button variant="contained" onClick={() =>pageClick(-1)} disabled={previousPaginationDisabled()}>Previous</Button></li>
                         {[...Array(totalPages)].map((value, i) => (
                             <li key={i} className={page === (i + 1) ? "active" : null}><button onClick={() => pageClick(i)}>{i +1}</button></li>
                         ))}
-                        <li className="next"><Button variant="contained"  onClick={() =>pageClick( page +1)} disabled={nextPaginationDisabled()}>Next</Button></li>
+                        <li className="next"><Button variant="contained"  onClick={() =>pageClick(+1)} disabled={nextPaginationDisabled()}>Next</Button></li>
                     </ul>
                 </div>
             </div>

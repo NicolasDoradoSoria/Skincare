@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UseContext from './UseContext'
+import UseContext from "../../../hooks/UseContext";
 const UseAddEditProduct = () => {
 
     const navigate = useNavigate();

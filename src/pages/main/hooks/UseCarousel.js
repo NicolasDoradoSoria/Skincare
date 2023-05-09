@@ -1,13 +1,12 @@
-import { useContext, useEffect, useRef} from "react";
-import ImagesContext from "../../../context/imagesContext/imagesContext";
+import { useEffect, useRef} from "react";
+import UseContext from "../../../hooks/UseContext";
 
-const CarouselContainer = () => {
+const UseCarousel = () => {
     const slideshow = useRef(null)
     const slideInterval = useRef(null);
     let currentSlide = slideshow.current
 
-    const imagesContext = useContext(ImagesContext);
-    const { getImages, images } = imagesContext;
+    const { getImages, images } = UseContext();
 
     const following = () => {
         //comprobamos que el slideshow tenga elementos
@@ -86,4 +85,4 @@ const CarouselContainer = () => {
 
 }
 
-export default CarouselContainer;
+export default UseCarousel;

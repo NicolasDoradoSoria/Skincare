@@ -2,7 +2,7 @@ import "../Styles.css";
 import styled from "styled-components"
 import { ReactComponent as LeftArrow } from "../../../img/iconmonstr-angel-left-thin.svg"
 import { ReactComponent as RightArrow } from "../../../img/iconmonstr-angel-right-thin.svg"
-import CarouselContainer from '../hooks/CarouselContainer'
+import UseCarousel from '../hooks/UseCarousel'
 function Banner({ groupImages }) {
     return (
         groupImages.files.map(singleImage => {
@@ -16,9 +16,8 @@ function Banner({ groupImages }) {
     )
 }
 
-
 const Carousel = () => {
-    const {following, previous, slideshow, images} = CarouselContainer()
+    const {following, previous, slideshow, images} = UseCarousel()
     return (
         <div className='slideshow'>
             <div className='carrousel'>

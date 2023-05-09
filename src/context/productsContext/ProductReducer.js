@@ -20,13 +20,12 @@ export default (state, action) => {
         products: action.payload.products,
         loading: true,
         totalPages: action.payload.TOTAL_PAGES,
-        pageCount: action.payload.PAGE
       };
     case GET_PRODUCT_SEARCH_LOADING:
       return {
         ...state,
         product: action.payload,
-        loading: true
+        // loading: true
       };
 
     case GET_PRODUCT_SEARCH_SUCCESSFUL:

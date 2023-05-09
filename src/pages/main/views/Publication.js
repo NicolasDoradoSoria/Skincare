@@ -6,8 +6,9 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import PublicationContainer from "../hooks/PublicationContainer";
+import UsePublication from "../hooks/UsePublication";
 const Publication = ({id}) => {
+    
 const {
     checked,
     changeQuantity,
@@ -26,7 +27,7 @@ const {
     stock,
     images,
     cardMediaStyle
-} = PublicationContainer(id)
+} = UsePublication(id)
 
 if(!name) return null
     return (

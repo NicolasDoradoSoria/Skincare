@@ -1,16 +1,16 @@
 import { TablePagination } from "@mui/material";
 import ProductSkeleton from "./ProductSkeleton";
 import '../Styles.css';
-import ListProductsContainer from "../hooks/ListProductsContainer";
+import UseListProducts from "../hooks/UseListProducts";
 import Product from "./Product";
 import SnackBarContainer from "../../../snackbar/hooks/SnackBarContainer";
 
 const ListOfProducts = () => {
-   const {loading, products, page, rowsPerPage, handlePageChange, handleRowsPerPageChange} = ListProductsContainer() 
+   const { loading, products, page, rowsPerPage, handlePageChange, handleRowsPerPageChange } = UseListProducts()
 
    return (
       <div className="card_container_product_list">
-            <h1>Productos</h1>
+         <h1>Productos</h1>
          <div className="card">
             {!loading ?
                <>
@@ -19,22 +19,22 @@ const ListOfProducts = () => {
                   ))}
                   <div className="table_pagination_container">
 
-                  <TablePagination
-                     rowsPerPageOptions={[6, 12, 24]}
-                     component="div"
-                     count={products.length}
-                     rowsPerPage={rowsPerPage}
-                     page={page}
-                     onPageChange={handlePageChange}
-                     onRowsPerPageChange={handleRowsPerPageChange}
-                  />
+                     <TablePagination
+                        rowsPerPageOptions={[6, 12, 24]}
+                        component="div"
+                        count={products.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handlePageChange}
+                        onRowsPerPageChange={handleRowsPerPageChange}
+                     />
                   </div>
                </>
                : <ProductSkeleton cards={6} />
             }
          </div>
          <SnackBarContainer />
-         
+
       </div>
    );
 }

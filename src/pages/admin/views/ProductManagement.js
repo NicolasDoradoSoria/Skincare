@@ -7,12 +7,12 @@ import Pagination from '../components/Pagination'
 import ProductRow from "../components/ProductRow";
 import '../Styles.css';
 import UseProductManagement from '../hooks/UseProductManagement';
-import UseContext from '../hooks/UseContext';
 import ProductRowSkeleton from '../components/ProductRowSkeleton'
 import SnackBarContainer from '../../../snackbar/hooks/SnackBarContainer'
+import UseContext from '../../../hooks/UseContext';
 
 const ProductManagement = () => {
-    const { gridClick, isGrid, sortProducts, searchProductsChange } = UseProductManagement()
+    const { gridClick, isGrid, sortProducts, searchProductsChange, onAddProductClick } = UseProductManagement()
     const { products, loading } = UseContext()
 
     return (<>
@@ -22,7 +22,7 @@ const ProductManagement = () => {
                 <div className="app-content">
                     <div className="app-content-header">
                         <h1 className="app-content-headerText">Products</h1>
-                        <Button variant="contained" type="submit" color="primary" >Add Product</Button>
+                        <Button variant="contained" color="primary" onClick={onAddProductClick}>Add Product</Button>
                     </div>
                     <div className="app-content-actions">
                         <input className="search-bar" placeholder="Buscar...." type="text" name="name" onChange={searchProductsChange} />
@@ -113,7 +113,7 @@ const ProductManagement = () => {
                                     <VerticalAlignBottomIcon />
                                 </button>
                             </div>
-                            <div className="product-cell sales">
+                            <div className="product-cell action">
                                 Acciones
                                 <button className="sort-button">
                                 </button>
@@ -133,8 +133,6 @@ const ProductManagement = () => {
                 <Pagination />
             </div>
             <SnackBarContainer />
-
-
         </div>
 
     </>

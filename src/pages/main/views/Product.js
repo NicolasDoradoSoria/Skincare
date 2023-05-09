@@ -1,15 +1,14 @@
 import { Button } from "@mui/material";
 import '../Product.css';
-import ProductContainer from "../hooks/ProductContainer";
 import Publication from "./Publication";
-import ReusableDialog from "./ReusableDialog";
-
+import UseProduct from "../hooks/UseProduct";
+import ReusableDialog from '../../../components/ReusableDialog'
 const Product = ({ product }) => {
-    const { navigatePublication, open, changedialog, handleButtonClick } = ProductContainer(product)
+    const { navigatePublication, open, changeDialog, handleButtonClick } = UseProduct()
     return (
         <div className="card_item_product">
             <div className="card_content_img">
-                <img src={`http://localhost:4000/${product.images[0].fileName}`} alt="" onClick={navigatePublication} />
+                <img src={`http://localhost:4000/${product.images[0].fileName}`} alt="" onClick={() => navigatePublication(product._id)} />
 
                 <div className="card_content_button">
                     <Button
@@ -45,7 +44,7 @@ const Product = ({ product }) => {
                     AGREGAR
                 </Button>
             </div>
-            <ReusableDialog open={open} onClose={changedialog}>
+            <ReusableDialog open={open} onClose={changeDialog}>
                 <Publication id={product._id} />
             </ReusableDialog>
         </div>

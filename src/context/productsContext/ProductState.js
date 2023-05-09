@@ -24,7 +24,6 @@ const ProductState = (props) => {
     images: [],
     msg: null,
     totalPages: 1,
-    pageCount: 0
   };
 
   const [state, dispatch] = useReducer(ProductReducer, initialState);
@@ -132,7 +131,7 @@ const ProductState = (props) => {
         loading: state.loading,
         images: state.images,
         totalPages: state.totalPages,
-        pageCount: state.pageCount,
+        msg: state.msg,
         getProducts,
         getProduct,
         addProduct,

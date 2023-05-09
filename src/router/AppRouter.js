@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import Main from "../pages/main/views/Main";
-import PublicationWrapper from "../pages/main/hooks/PublicationWrapper";
 import Login from "../pages/login/views/Login";
 import SignUp from "../pages/login/views/SignUp";
 import ListOfProducts from "../pages/main/views/ListOfProducts";
@@ -9,6 +8,7 @@ import UserContext from "../context/userContext/UserContext";
 import ProtectedRoute from "./ProtectedRoute";
 import AddEditProduct from "../pages/admin/views/AddEditProduct";
 import ProductManagement from "../pages/admin/views/ProductManagement";
+import PublicationWrapper from "../pages/main/components/PublicationWrapper";
 
 const AppRouter = () => {
     //userContext   

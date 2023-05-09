@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import ProductContext from "../../../context/productsContext/ProductContext";
+import { useEffect, useState } from "react";
+import UseContext from "../../../hooks/UseContext";
 
-const ListProductsContainer = () => {
-    // context products
-    const productsContext = useContext(ProductContext)
-    const { products, getProducts, loading } = productsContext
+const UseListProducts = () => {
+
+    const { products, getProducts, loading } = UseContext();
 
     //hooks
     const [page, setPage] = useState(0);
@@ -15,7 +14,7 @@ const ListProductsContainer = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    
+
     useEffect(() => {
         getProducts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -32,4 +31,4 @@ const ListProductsContainer = () => {
 
 }
 
-export default ListProductsContainer;
+export default UseListProducts;
