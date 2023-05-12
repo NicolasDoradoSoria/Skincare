@@ -1,10 +1,25 @@
 import { useEffect, useState } from "react";
 import { Backdrop, CircularProgress } from "@mui/material";
 import UseContext from "../../../hooks/UseContext";
+/*
+************************************************************************************************
 
+ESTE CUSTOM HOOK TRAE DE USECONTENXT LOS SIGUIENTES HOOKS
+A- getProduct ES PARA CARGAR EL PRODUCTO EL MISMO NECESITA QUE LE PASEMOS UN ID Y SE UTILIZA EN EL USE EFFECT
+B- product
+c- getFavoriteById carga el si existen favoritos 
+
+TIENE LOS SIGUIENTES USESTATE
+A- quantity SE VALIDA QUE NO SEA MENOR A 0 Y QUE SEA MENOR AL STOCK
+B- activeStep EL CONTADOR DE IMAGEN
+C- checked LA TRANSICION DEL BOTON VISTA PREVIA
+D- QUE ES PARA AGREGAR OPACIDAD
+
+************************************************************************************************
+*/
 const UsePublication = (id) => {
 
-    const { getProduct, product, isFavorite, getFavoriteById } =  UseContext();
+    const { getProduct, product, getFavoriteById } =  UseContext();
 
     //hooks 
     const [quantity, setQuantity] = useState(1)
@@ -69,7 +84,6 @@ const UsePublication = (id) => {
         handleNextAndBack,
         quantity,
         smallImage,
-        isFavorite,
         activeStep,
         checkedOffer,
         originalPrice,

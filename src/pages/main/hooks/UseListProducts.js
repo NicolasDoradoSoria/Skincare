@@ -1,9 +1,23 @@
 import { useEffect, useState } from "react";
 import UseContext from "../../../hooks/UseContext";
+/*
+************************************************************************************************
+ESTE CUSTOM HOOKS ES EL ENCARGADO DE LA LOGICA DE LISTOFRODUCTS EL MISMO CONTEIENE LOS SIGUIENTES USESTATE
+TAMBIEN SE ENCARGA DE LA LOGICA DEL COMPONENETE PAGINATION
 
+A- PAGE QUE ES PARA CAMBIAR DE PAGINA
+B- ROWSPERPAGE QUE ES EL LIMITE POR PAGINA
+
+LUEGO TIENE getProducts QUE VIENE DE UseContext
+
+
+ESTE SE ENCARGA DE LA PAGINACION Y DE CARGAR LOS PRODUCTOS
+
+************************************************************************************************
+*/
 const UseListProducts = () => {
 
-    const { products, getProducts, loading } = UseContext();
+    const { getProducts } = UseContext();
 
     //hooks
     const [page, setPage] = useState(0);
@@ -15,18 +29,25 @@ const UseListProducts = () => {
         setPage(0);
     };
 
+    const pagesByRows = () => {
+        return page * rowsPerPage
+    }
+
+    const pagesByRowsPlusRows = () => {
+        return pagesByRows() + rowsPerPage
+    }
     useEffect(() => {
         getProducts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return {
-        products,
-        loading,
         page,
         handleRowsPerPageChange,
         handlePageChange,
         rowsPerPage,
+        pagesByRows,
+        pagesByRowsPlusRows
     }
 
 }

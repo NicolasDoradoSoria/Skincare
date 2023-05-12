@@ -1,6 +1,15 @@
 import { Skeleton } from "@mui/material";
 import '../ProductSkeleton.css';
+/*
+************************************************************************************************
+CUANDO ESTAN CARGANDO LOS PRODUCTOS EN DEL COMPONENTE LISTOFPRODUCT ESTE SE RENDERIZA...
 
+
+
+
+
+************************************************************************************************
+*/
 const ProductSkeleton = ({ cards }) => {
     return (
         Array(cards).fill(0).map((item, i) =>

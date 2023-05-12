@@ -1,12 +1,23 @@
-import { useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 import UseContext from "../../../hooks/UseContext";
+/*
+************************************************************************************************
+ESTE CUSTOM HOOK ES EL ENCARGADO DE LA LOGICA DEL CAROUSEL LA MISMA SE ENCARGA DE LA MANIPULACION DE LA IMAGEN
 
+EN LA MISMA SE INICIALIZAN LOS SIGUIENTES useRef
+A- slideshow COMO NULL
+B- slideInterval COMO NULL
+
+TAMBIERN LLAMO A getImages QUE ES UN CONTEXT QUE VIENE DESDE UseContext 
+EN EL useEffect LLAMO A GETIMAGES A GETIMAGES QUE HACE QUE CARGE LAS IMAGENES EN EL CAROUSEL Y MANIPULO LOS INTERVALOS QUE SE VAN A MOSTRAR ENTRE UNA Y OTRA
+
+************************************************************************************************
+*/
 const UseCarousel = () => {
     const slideshow = useRef(null)
     const slideInterval = useRef(null);
-    let currentSlide = slideshow.current
 
-    const { getImages, images } = UseContext();
+    const { getImages } = UseContext();
 
     const following = () => {
         //comprobamos que el slideshow tenga elementos
@@ -17,7 +28,7 @@ const UseCarousel = () => {
             //establecemos la transicion para el slideshow
             slideshow.current.style.transition = `3500ms ease-out all`
 
-            const slideSize =slideshow.current.children[0].offsetWidth
+            const slideSize = slideshow.current.children[0].offsetWidth
 
             //movemos el slideshow
             slideshow.current.style.transform = `translateX(-${slideSize}px)`
@@ -27,18 +38,20 @@ const UseCarousel = () => {
                 slideshow.current.style.transition = "none"
                 slideshow.current.style.transform = `translateX(0)`
 
-                //tomamos el primer elemento y la mandamos al final
+                //TOMAMOS el primer elemento y la mandamos al final
                 slideshow.current.appendChild(firstElement);
                 slideshow.current.removeEventListener("trasitionend", transition)
             }
 
             //eventlistener para cuando termina la animacions
-           slideshow.current.addEventListener("transitionend", transition)
+            slideshow.current.addEventListener("transitionend", transition)
 
         }
     }
 
     const previous = () => {
+        let currentSlide = slideshow.current
+
         if (slideshow.current.children.length > 0) {
             //obtiene el primer elemento del slideshow
             const index = currentSlide.children.length - 1
@@ -67,7 +80,7 @@ const UseCarousel = () => {
             clearInterval(slideInterval.current);
         });
 
-        // olvemos a poner el intervalo cuando saquen el cursor del slideshow
+        // Volvemos a poner el intervalo cuando saquen el cursor del slideshow
         slideshow.current.addEventListener('mouseleave', () => {
             slideInterval.current = setInterval(() => {
                 following();
@@ -76,11 +89,11 @@ const UseCarousel = () => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
     return {
         slideshow,
         following,
         previous,
-        images
     }
 
 }

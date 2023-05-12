@@ -1,5 +1,5 @@
-import ListOfProducts from "./ListOfProducts";
-import Carousel from './Carousel'
+import ListOfProducts from "../views/ListOfProducts";
+import Carousel from '../views/Carousel'
 const Main = () => {
     return (
     <div>

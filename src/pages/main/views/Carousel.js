@@ -3,32 +3,33 @@ import styled from "styled-components"
 import { ReactComponent as LeftArrow } from "../../../img/iconmonstr-angel-left-thin.svg"
 import { ReactComponent as RightArrow } from "../../../img/iconmonstr-angel-right-thin.svg"
 import UseCarousel from '../hooks/UseCarousel'
-function Banner({ groupImages }) {
-    return (
-        groupImages.files.map(singleImage => {
-            return <Slide key={singleImage._id}>
-                <a href="http://localhost:3000/">
-                        <img src={`http://localhost:4000/${singleImage.fileName}`} alt=''></img>
-                </a>
-            </Slide>
-        })
+import Banner from "../components/Banner";
+import UseContext from "../../../hooks/UseContext";
+/*
+************************************************************************************************
+ESTE COMPONENTE ES LA VISTA QUE SE ENCARGA DE MOSTRAR EL CAROUSEL LA MISMA NECESITA DE LA LOGICA 
+A- following
+B- previous
+C- slideshow
 
-    )
-}
+TAMBIEN NECESITA LAS IMAGENES QUE VIENEN DEL CONTEXT
 
+************************************************************************************************
+*/
 const Carousel = () => {
-    const {following, previous, slideshow, images} = UseCarousel()
+    const { following, previous, slideshow } = UseCarousel()
+   const { images } = UseContext()
+    
     return (
         <div className='slideshow'>
             <div className='carrousel'>
                 <MainContainer>
                     <SlideContainer ref={slideshow}>
                         {
-                            images.map((groupImages, index) => {
-                                return <Banner groupImages={groupImages} key={index} />
-                            })
+                            images.map((groupImages, index) => (
+                                <Banner groupImages={groupImages} key={index} />
+                            ))
                         }
-
                     </SlideContainer>
                     <Controller>
                         <Button onClick={previous}>
@@ -46,36 +47,12 @@ const Carousel = () => {
 
 const MainContainer = styled.div`
     position: relative;
-
-    
-    
 `;
 
 const SlideContainer = styled.div`
     display: flex;
     flex-wrap: nowrap;
     
-`;
-
-const Slide = styled.div`
-    min-width: 100%;
-    overflow: hidden;
-    transition: .3s ease all;
-    z-index: 10;
-    max-height: 500px;
-    position: relative;
-
-    @media screen and (max-width: 700px){
-        max-height: 200px;    
-    }
-
-
-    img {
-        width: 100%;
-        vertical-align: top;
-    height: 500px
-
-    }
 `;
 
 const Controller = styled.div`
