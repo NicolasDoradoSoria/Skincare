@@ -1,14 +1,16 @@
-import { Button } from "@mui/material";
+import { Button} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import '../Styles.css';
-import UseProductRow from "../hooks/UseProductRow";
-import ReusableDialog from '../../../components/ReusableDialog'
-import AddEditProduct from '../views/AddEditProduct'
 import UseContext from "../../../hooks/UseContext";
+import { useContext } from "react";
+import ImageContext from "../context/addEditContext";
+
 const ProductRow = ({ product }) => {
     const { deleteProduct } = UseContext()
-    const { onClickEditProduct, open, setOpen, changeDialog } = UseProductRow()
+
+    const imageContext = useContext(ImageContext);
+    const { onClickEditProduct} = imageContext;
     return (
         <>
             <button className="cell-more-button">
@@ -34,12 +36,12 @@ const ProductRow = ({ product }) => {
             <div className="product-cell price"><span className="cell-label">Price:</span>{product.price}</div>
             <div className="product-cell action">
                 <span className="cell-label">Acciones:</span>
-                <Button color="success" variant="contained" onClick={onClickEditProduct}><EditIcon sx={{ width: "20px", height: "20px" }} /></Button>
+                <Button color="success" variant="contained" onClick={() => onClickEditProduct(product._id)}><EditIcon sx={{ width: "20px", height: "20px" }} /></Button>
                 <Button color="error" variant="contained" onClick={() => deleteProduct(product._id)}><DeleteIcon sx={{ width: "20px", height: "20px" }} /></Button>
             </div>
-            <ReusableDialog open={open} onClose={changeDialog} >
-                <AddEditProduct open={open} setOpen={setOpen} />
-            </ReusableDialog>
+            
+        
+
         </>
     );
 }

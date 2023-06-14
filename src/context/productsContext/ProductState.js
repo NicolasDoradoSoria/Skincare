@@ -11,7 +11,7 @@ import {
   PRODUCT_ERROR,
   UPLOAD_PERCENTAGE,
   DELETE_PRODUCT,
-  DELETE_MSG
+  DELETE_MSG,
 } from "../../types";
 import { getProductService, getProductsService, postAddProductService, postSearchProducts, deleteProductService } from "../../service/Products.service";
 
@@ -62,7 +62,6 @@ const ProductState = (props) => {
           type: GET_PRODUCT_SEARCH_SUCCESSFUL,
         })
       }, 5000)
-
     } catch (error) {
       console.log(error)
     }
@@ -123,6 +122,8 @@ const ProductState = (props) => {
     }
   }
 
+
+
   return (
     <ProductContext.Provider
       value={{
@@ -136,7 +137,7 @@ const ProductState = (props) => {
         getProduct,
         addProduct,
         searchProducts,
-        deleteProduct
+        deleteProduct,
       }}
     >
       {props.children}

@@ -5,7 +5,7 @@ import '../Styles.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginContainer from "../hooks/LoginContainer";
 import SnackBarContainer from '../../../snackbar/hooks/SnackBarContainer'
-const Login = () => {
+const Login = () => { 
     const { changeInput, loginButtonDisabled, onSubmit } = LoginContainer()
 
     return (

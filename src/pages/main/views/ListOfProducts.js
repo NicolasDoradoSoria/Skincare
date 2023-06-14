@@ -4,8 +4,8 @@ import UseListProducts from "../hooks/UseListProducts";
 import ProductItem from "../components/ProductItem";
 import SnackBarContainer from "../../../snackbar/hooks/SnackBarContainer";
 import UseContext from "../../../hooks/UseContext";
-import { If, Else, Then } from "../components/CompoundComponentIfElse";
 import Pagination from "../components/Pagination";
+import { Else, If, Then } from "../../../components/CompoundComponentIfElse";
 
 /*
 ************************************************************************************************

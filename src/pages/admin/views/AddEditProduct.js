@@ -1,43 +1,38 @@
-import { Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select } from "@mui/material";
 import SnackBarContainer from "../../../snackbar/hooks/SnackBarContainer";
 
 import '../Styles.css';
-import UseAddEditProduct from "../hooks/UseAddEditProduct";
-
+import { If, Then } from "../../../components/CompoundComponentIfElse";
+import ProductTextField from "../../../components/ProductTextField";
+import Images from "../components/Images";
+import { useContext } from "react";
+import AddEditContext from "../context/addEditContext";
+import ButtonReusable from "../../../components/ButtonReusable";
 const AddEditProduct = () => {
 
-    const {
-        productSubmit, name, price, descripcion, originalPrice, categories,
-        productButtonDisabled, productChange, checkedOfferChange, checkedOffer, selectedImage, images,
-        imageButtonDisabled, selectImage, imageChange, deleteImage } = UseAddEditProduct()
+    const addEditContext = useContext(AddEditContext);
+    const { productButtonDisabled, imageButtonDisabled, productSubmit, name, price, descripcion, originalPrice, categories,
+        productChange, checkedOfferChange, checkedOffer,
+        deleteImage, product } = addEditContext;
 
     return (
+        
         <div className="product_container">
             <div className="product_card">
-
-                <h1>Agregar Producto</h1>
+                {!product? <h1>Agregar Producto</h1> : <h1>Editar Producto</h1>}
                 <form className="product_form" onSubmit={productSubmit}>
                     {/* NOMBRE */}
-                    <div className="product_item">
-                        <TextField onChange={productChange} value={name} variant="outlined" label="nombre del producto" name="name" fullWidth required />
-                    </div>
+                    <ProductTextField productChange={productChange} value={name} label="nombre del producto" name="name" />
+
                     {/* PRECIO */}
-                    <div className="product_item">
-                        <TextField onChange={productChange} value={price} variant="outlined" name="price" fullWidth required label="Precio" type="number" InputProps={{ inputProps: { min: 0 } }} />
-                    </div>
+                    <ProductTextField productChange={productChange} type="number" value={price} label="Precio" name="price" inputProps={{ inputProps: { min: 0 } }} />
+
                     {/* DESCRIPCION */}
-                    <div className="product_item">
-                        <TextField onChange={productChange} value={descripcion} variant="outlined" label="Descripcion" multiline name="descripcion" fullWidth required />
-                    </div>
+                    <ProductTextField productChange={productChange} value={descripcion} label="Descripcion" name="descripcion" />
+
                     {/* STOCK */}
-                    <div className="product_item">
-                        <TextField onChange={productChange} variant="outlined" label="stock" name="stock" fullWidth required type="number" InputLabelProps={{
-                            shrink: true,
-                        }}
-                            defaultValue="1"
-                            inputProps={{ min: "1" }}
-                        />
-                    </div>
+                    <ProductTextField productChange={productChange} label="Stock" name="stock" type="number" inputProps={{ inputProps: { min: 1 } }} defaultValue="1" />
+
                     {/* CATEGORIA */}
                     <div className="product_item">
                         <FormControl fullWidth>
@@ -54,54 +49,34 @@ const AddEditProduct = () => {
                             </Select>
                         </FormControl>
                     </div>
-                    {/* SUBIR IMAGBEN */}
-                    <div className="product_item">
-                        <Button variant="contained" component="label" color="primary">
-                            Subir
-                            <input hidden accept="image/*" name="img" type="file" onChange={imageChange} />
-                        </Button>
-                    </div>
-                    {/* IMAGEN PREVIA */}
-                    <div className="product_item_col2">
-                        {
-                            images.length ?
-                                <div className="product_upload_img">
-                                    {
-                                        images.map((image, i) =>
-                                            <div key={i} className={(selectedImage === image) ? "product_select_image" : null}>
-                                                <Button onClick={() => selectImage(image)}>
-                                                    <img src={URL.createObjectURL(image)} alt="uploaded_image" className="addEdditProduct_img" />
-                                                </Button>
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                                : <h3>No hay Imagenes seleccionadas</h3>
-                        }
-                    </div>
+
+
+                    <Images />
                     {/* ELIMINAR IMAGEN */}
                     <div className="product_item">
                         <Button type="button" variant="contained" disabled={imageButtonDisabled()} onClick={() => deleteImage()}>Eliminar</Button>
                     </div>
                     {/* CHECKBOX DE SI TIENE OFERTA O NO */}
-                    <div className="product_item_col3">
+                    <div className="product_item">
                         <FormControlLabel control={<Checkbox name="checkedOffer" checked={checkedOffer} onChange={checkedOfferChange} />} label="Oferta" />
                     </div>
                     {/* PRECIO ORIGINAL se activa si es true el checkedOffer */}
-                    {checkedOffer ?
-                        <div className="product_item_col3">
-                            <TextField value={originalPrice} onChange={productChange} variant="outlined" label="precio original" type="number" InputProps={{ inputProps: { min: price } }} name="originalPrice" fullWidth required />
-                        </div>
-                        : <div className="product_item"></div>}
-                    <div className="product_item_col4">
-                        <Button variant="contained" type="submit" color="primary" disabled={productButtonDisabled()}>
-                            Agregar Producto
-                        </Button>
-                    </div>
+                    <If value={!checkedOffer}>
+                        <Then>
+                            <ProductTextField value={originalPrice} productChange={productChange} label="precio orginal" type="number" name="originalPrice" inputProps={{ inputProps: { min: price } }} />
+                        </Then>
+                    </If>
+                    <ButtonReusable type="submit" disabled={productButtonDisabled()}>
+                        {!product? "Agregar Producto" : "actualizar Producto" }
+                    </ButtonReusable>
+
                 </form>
             </div>
             <SnackBarContainer />
-        </div>);
+        </div>
+
+
+    );
 }
 
 export default AddEditProduct;

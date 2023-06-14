@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
 import UseProduct from "../hooks/UseProduct";
-import { If, Then } from "../components/CompoundComponentIfElse";
 import Publication from "./Publication";
 import ReusableDialog from '../../../components/ReusableDialog'
+import { If, Then } from "../../../components/CompoundComponentIfElse";
 /*
 ************************************************************************************************
 ESTA VISTA ES LA ENCARGADA DE MOSTRAR EL PRODUCTO LA MISMA NECESITA QUE SE LO PASE POR PROPS

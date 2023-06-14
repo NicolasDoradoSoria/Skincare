@@ -2,7 +2,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import MenuIcon from '@mui/icons-material/Menu';
 import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
-import { Button } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 import Pagination from '../components/Pagination'
 import ProductRow from "../components/ProductRow";
 import '../Styles.css';
@@ -10,12 +10,19 @@ import UseProductManagement from '../hooks/UseProductManagement';
 import ProductRowSkeleton from '../components/ProductRowSkeleton'
 import SnackBarContainer from '../../../snackbar/hooks/SnackBarContainer'
 import UseContext from '../../../hooks/UseContext';
+import AddEditContext from '../context/addEditContext';
+import { useContext } from 'react';
+import AddEditProduct from './AddEditProduct';
+import ReusableDialog from '../../../components/ReusableDialog'
 
 const ProductManagement = () => {
     const { gridClick, isGrid, sortProducts, searchProductsChange, onAddProductClick } = UseProductManagement()
     const { products, loading } = UseContext()
+    const addEditContext = useContext(AddEditContext);
+    const { loadingProgress, open, changeDialog, setOpen, success } = addEditContext;
 
     return (<>
+
         <div className="product_Management">
 
             <div className="app-container">
@@ -134,6 +141,17 @@ const ProductManagement = () => {
             </div>
             <SnackBarContainer />
         </div>
+        <ReusableDialog open={open} onClose={changeDialog} >
+            {success ? <AddEditProduct open={open} setOpen={setOpen} /> : null}
+        </ReusableDialog>
+        {loadingProgress && (
+            <div className='progress'>
+
+                <Box className="box">
+                    <CircularProgress color="inherit" />
+                </Box>
+            </div>
+        )}
 
     </>
     );
