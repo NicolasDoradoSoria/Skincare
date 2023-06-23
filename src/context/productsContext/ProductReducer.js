@@ -6,7 +6,8 @@ import {
   PRODUCT_SUCCESSFUL,
   DELETE_MSG,
   PRODUCT_ERROR,
-  DELETE_PRODUCT
+  DELETE_PRODUCT,
+  UPDATE_PRODUCT
 } from "../../types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -48,15 +49,25 @@ export default (state, action) => {
     case DELETE_MSG:
       return {
         ...state,
-        loading: false,
         msg: null,
       }
+
     case PRODUCT_ERROR:
       return {
         ...state,
         msg: action.payload,
       }
 
+    case UPDATE_PRODUCT:
+      const alert = {
+        msg: action.payload.msg,
+        category: "success",
+      }
+      return {
+        ...state,
+        msg: alert,
+        product: null,
+      }
     default:
       return state;
   }

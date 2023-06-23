@@ -1,14 +1,12 @@
-import { AddEditState } from "../context/AddEditState";
+import {ProductManagementState } from "../context/ProductManagementState";
 import AddEditProduct from "./AddEditProduct";
 import ProductManagement from "./ProductManagement";
 
 const Admin = ({ children }) => {
     return (
-        <>
-            <AddEditState>
+            <ProductManagementState>
                 {children}
-            </AddEditState>
-        </>
+            </ProductManagementState>
     );
 }
 

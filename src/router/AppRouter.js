@@ -26,7 +26,6 @@ const AppRouter = () => {
                     <Route element={<ProtectedRoute isAllowed={authenticated && isAdmin} />} >
                         <Route exact path="/agregar-producto" element={<Admin><Admin.AddEditProduct/></Admin>} />
                         <Route exact path="/todos-Productos" element={<Admin><Admin.ProductManagement/></Admin>} />
-
                     </Route>
                 </> : <></>}
         </Routes>

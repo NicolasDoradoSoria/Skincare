@@ -4,13 +4,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import '../Styles.css';
 import UseContext from "../../../hooks/UseContext";
 import { useContext } from "react";
-import ImageContext from "../context/addEditContext";
+import ProductManagementContext from "../context/ProductManagementContext";
 
 const ProductRow = ({ product }) => {
     const { deleteProduct } = UseContext()
 
-    const imageContext = useContext(ImageContext);
-    const { onClickEditProduct} = imageContext;
+    const productManagementContext = useContext(ProductManagementContext);
+    const { onClickEditProduct} = productManagementContext;
     return (
         <>
             <button className="cell-more-button">

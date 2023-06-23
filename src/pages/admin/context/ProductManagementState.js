@@ -1,18 +1,19 @@
-import ImageContext from "./addEditContext";
+import ProductManagementContext from "./ProductManagementContext";
 import UseAddEditProduct from "../hooks/UseAddEditProduct";
 import UseProductRow from "../hooks/UseProductRow";
 
-export const AddEditState = ({ children }) => {
+export const ProductManagementState = ({ children }) => {
+    
     const { imageChange, images, selectImage, selectedImage, productButtonDisabled,
         imageButtonDisabled, productSubmit, name, price, descripcion, originalPrice, categories,
         productChange, checkedOfferChange, checkedOffer,
-        deleteImage, product } = UseAddEditProduct()
+        deleteImage, product, category } = UseAddEditProduct()
 
     const { loadingProgress, onClickEditProduct,
         open, setOpen, changeDialog, success} = UseProductRow()
 
     return (
-        <ImageContext.Provider value={{
+        <ProductManagementContext.Provider value={{
             images,
             imageChange,
             selectedImage,
@@ -25,9 +26,10 @@ export const AddEditState = ({ children }) => {
             loadingProgress,
             onClickEditProduct,
             open,
-            setOpen, changeDialog, success, product
+            setOpen, changeDialog, success, product,
+            category
         }}>
             {children}
-        </ImageContext.Provider>
+        </ProductManagementContext.Provider>
     )
 }

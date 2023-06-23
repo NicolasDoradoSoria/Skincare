@@ -12,8 +12,9 @@ import {
   UPLOAD_PERCENTAGE,
   DELETE_PRODUCT,
   DELETE_MSG,
+  UPDATE_PRODUCT
 } from "../../types";
-import { getProductService, getProductsService, postAddProductService, postSearchProducts, deleteProductService } from "../../service/Products.service";
+import { getProductService, getProductsService, postAddProductService, postSearchProducts, deleteProductService, putUpdateProductService } from "../../service/Products.service";
 
 const ProductState = (props) => {
 
@@ -122,7 +123,33 @@ const ProductState = (props) => {
     }
   }
 
+  // actualizar un producto
+  const updateProduct = async (data) => {
+    try {
+      const result = await putUpdateProductService(data)
+      dispatch({
+        type: UPDATE_PRODUCT,
+        payload: result.data
+      })
 
+      setTimeout(() => {
+        dispatch({
+          type: DELETE_MSG,
+        })
+      }, 5000)
+      getProducts()
+    } catch (error) {
+      console.log(error.response.data.msg)
+      const alert = {
+        msg: error.response.data.msg,
+        category: "error"
+      }
+      dispatch({
+        type: PRODUCT_ERROR,
+        payload: alert,
+      });
+    }
+  }
 
   return (
     <ProductContext.Provider
@@ -138,6 +165,7 @@ const ProductState = (props) => {
         addProduct,
         searchProducts,
         deleteProduct,
+        updateProduct
       }}
     >
       {props.children}

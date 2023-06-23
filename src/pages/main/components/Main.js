@@ -2,11 +2,11 @@ import ListOfProducts from "../views/ListOfProducts";
 import Carousel from '../views/Carousel'
 const Main = () => {
     return (
-    <div>
-        <Carousel />
-        <ListOfProducts />
+        <div>
+            <Carousel />
+            <ListOfProducts />
 
-    </div>);
+        </div>);
 }
 
 export default Main;

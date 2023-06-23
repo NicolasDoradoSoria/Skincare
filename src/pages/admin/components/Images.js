@@ -1,12 +1,13 @@
 import { Button } from "@mui/material";
 
-import {useContext } from 'react';
-import ImageContext from "../context/addEditContext";
+import { useContext } from 'react';
+import ProductManagementContext from "../context/ProductManagementContext";
 
 const Images = () => {
 
-    const imageContext = useContext(ImageContext);
-    const { images, imageChange, selectedImage, selectImage } = imageContext;
+    const productManagementContext = useContext(ProductManagementContext);
+    const { images, imageChange, selectedImage, selectImage, product } = productManagementContext;
+
 
     return (
         <>
@@ -26,7 +27,7 @@ const Images = () => {
                                 images.map((image, i) =>
                                     <div key={i} className={(selectedImage === image) ? "product_select_image" : null}>
                                         <Button onClick={() => selectImage(image)}>
-                                            <img src={URL.createObjectURL(image)} alt="uploaded_image" className="addEdditProduct_img" />
+                                            <img src={!product ? URL.createObjectURL(image) : `http://localhost:4000/${image.fileName}`} alt="uploaded_image" className="addEdditProduct_img" />
                                         </Button>
                                     </div>
                                 )

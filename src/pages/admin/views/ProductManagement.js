@@ -10,16 +10,18 @@ import UseProductManagement from '../hooks/UseProductManagement';
 import ProductRowSkeleton from '../components/ProductRowSkeleton'
 import SnackBarContainer from '../../../snackbar/hooks/SnackBarContainer'
 import UseContext from '../../../hooks/UseContext';
-import AddEditContext from '../context/addEditContext';
+import ProductManagementContext from '../context/ProductManagementContext';
 import { useContext } from 'react';
 import AddEditProduct from './AddEditProduct';
 import ReusableDialog from '../../../components/ReusableDialog'
 
 const ProductManagement = () => {
     const { gridClick, isGrid, sortProducts, searchProductsChange, onAddProductClick } = UseProductManagement()
+    
     const { products, loading } = UseContext()
-    const addEditContext = useContext(AddEditContext);
-    const { loadingProgress, open, changeDialog, setOpen, success } = addEditContext;
+
+    const productManagementContext = useContext(ProductManagementContext);
+    const { loadingProgress, open, changeDialog, setOpen, success } = productManagementContext;
 
     return (<>
 

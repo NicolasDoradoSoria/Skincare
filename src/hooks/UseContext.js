@@ -7,7 +7,7 @@ import FavoriteContext from '../context/favoriteContext/FavoriteContext';
 function UseContext() {
     //productContext
     const productContext = useContext(ProductContext);
-    const { getProducts, products, totalPages, searchProducts, loading, deleteProduct, addProduct, msg, getProduct, product} = productContext;
+    const { getProducts, products, totalPages, searchProducts, loading, deleteProduct, addProduct, msg, getProduct, product, updateProduct } = productContext;
 
     //CategoryContext
     const categoryContext = useContext(CategoryContext)
@@ -17,6 +17,7 @@ function UseContext() {
     const snackbarContext = useContext(SnackBarContext)
     const { openSnackbar } = snackbarContext
 
+    // context Images
     const imagesContext = useContext(ImagesContext);
     const { getImages, images } = imagesContext;
 
@@ -41,7 +42,8 @@ function UseContext() {
         getCategory,
         categories,
         openSnackbar,
-        msg
+        msg,
+        updateProduct
     }
 }
 

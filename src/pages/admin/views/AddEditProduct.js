@@ -1,25 +1,23 @@
 import { Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select } from "@mui/material";
-import SnackBarContainer from "../../../snackbar/hooks/SnackBarContainer";
-
 import '../Styles.css';
 import { If, Then } from "../../../components/CompoundComponentIfElse";
 import ProductTextField from "../../../components/ProductTextField";
 import Images from "../components/Images";
 import { useContext } from "react";
-import AddEditContext from "../context/addEditContext";
+import ProductManagementContext from "../context/ProductManagementContext";
 import ButtonReusable from "../../../components/ButtonReusable";
 const AddEditProduct = () => {
 
-    const addEditContext = useContext(AddEditContext);
-    const { productButtonDisabled, imageButtonDisabled, productSubmit, name, price, descripcion, originalPrice, categories,
+    const productManagementContext = useContext(ProductManagementContext);
+    const { productButtonDisabled, imageButtonDisabled, productSubmit, name, price, descripcion, originalPrice, categories, category,
         productChange, checkedOfferChange, checkedOffer,
-        deleteImage, product } = addEditContext;
+        deleteImage, product } = productManagementContext;
 
     return (
-        
+
         <div className="product_container">
             <div className="product_card">
-                {!product? <h1>Agregar Producto</h1> : <h1>Editar Producto</h1>}
+                {!product ? <h1>Agregar Producto</h1> : <h1>Editar Producto</h1>}
                 <form className="product_form" onSubmit={productSubmit}>
                     {/* NOMBRE */}
                     <ProductTextField productChange={productChange} value={name} label="nombre del producto" name="name" />
@@ -42,6 +40,7 @@ const AddEditProduct = () => {
                                 defaultValue=""
                                 id="grouped-native-select"
                                 name="category"
+                                value={category}
                             >
                                 {categories.map(category => (
                                     <MenuItem value={category._id} key={category._id} >{category.name}</MenuItem>
@@ -50,7 +49,7 @@ const AddEditProduct = () => {
                         </FormControl>
                     </div>
 
-
+                    {/* CARGA Y MOSTRAR IMAGENES */}
                     <Images />
                     {/* ELIMINAR IMAGEN */}
                     <div className="product_item">
@@ -67,12 +66,11 @@ const AddEditProduct = () => {
                         </Then>
                     </If>
                     <ButtonReusable type="submit" disabled={productButtonDisabled()}>
-                        {!product? "Agregar Producto" : "actualizar Producto" }
+                        {!product ? "Agregar Producto" : "actualizar Producto"}
                     </ButtonReusable>
 
                 </form>
             </div>
-            <SnackBarContainer />
         </div>
 
 

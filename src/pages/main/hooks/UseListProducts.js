@@ -17,7 +17,7 @@ ESTE SE ENCARGA DE LA PAGINACION Y DE CARGAR LOS PRODUCTOS
 */
 const UseListProducts = () => {
 
-    const { getProducts } = UseContext();
+    const { getProducts, openSnackbar, msg } = UseContext();
 
     //hooks
     const [page, setPage] = useState(0);
@@ -38,8 +38,12 @@ const UseListProducts = () => {
     }
     useEffect(() => {
         getProducts()
+        if (msg) {
+            openSnackbar(msg.msg, msg.category)
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [msg])
 
     return {
         page,

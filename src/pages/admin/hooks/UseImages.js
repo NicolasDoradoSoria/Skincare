@@ -12,9 +12,8 @@ const UseImages = () => {
     //selecciona una imagen del producto haciendo click
     const selectImage = (image) => setSelectedImage(image)
 
-    const imageChange = (e) => {
-        setImages(images.concat(e.target.files[0]));
-    }
+    const imageChange = (e) => setImages(images.concat(e.target.files[0]));
+    
     const imagesDisabled = () => {    
         return images.length === 0
     } 
@@ -28,7 +27,8 @@ const UseImages = () => {
         selectImage,
         imageChange,
         deleteImage,
-        selectedImage
+        selectedImage,
+        setImages
     };
 }
 

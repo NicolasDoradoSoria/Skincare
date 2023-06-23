@@ -7,15 +7,16 @@ const UseAddEditProduct = () => {
 
     const navigate = useNavigate();
 
-    const { addProduct, getCategory, categories, product } = UseContext()
+    const { addProduct, getCategory, categories, product, updateProduct } = UseContext()
     // custom hooks de las imagenes 
-    const {imagesDisabled,
+    const { imagesDisabled,
         images,
         imageButtonDisabled,
         selectImage,
         imageChange,
         deleteImage,
-        selectedImage
+        selectedImage,
+        setImages
     } = UseImages()
 
     // hook de productNew se usa inicializa las propiedades
@@ -30,18 +31,17 @@ const UseAddEditProduct = () => {
     });
 
     const { name, price, descripcion, category, checkedOffer, originalPrice } = productNew;
+
     const isEmpty = (aField) => aField === "";
 
-    
-     // desabilitar el boton de agregar producto si alguno de los campos no fue completado
-     const productButtonDisabled = () => {    
-        return imagesDisabled()  || (isEmpty(name) || isEmpty(descripcion) || isEmpty(category))
-    } 
+    // desabilitar el boton de agregar producto si alguno de los campos no fue completado
+    const productButtonDisabled = () => {
+        return imagesDisabled() || (isEmpty(name) || isEmpty(descripcion) || isEmpty(category))
+    }
 
     // checkbox
     const checkedOfferChange = (e) => setProductNew({ ...productNew, [e.target.name]: e.target.checked });
 
-    
     // guarda en el hooks de productNew los campos
     const productChange = (e) => {
         setProductNew({
@@ -52,17 +52,18 @@ const UseAddEditProduct = () => {
 
     const productSubmit = (e) => {
         e.preventDefault();
-        addProduct(productNew, images);
+        (product ? updateProduct(productNew) : addProduct(productNew, images))
         navigate("/")
     }
 
     useEffect(() => {
         getCategory()
-        if(product) setProductNew(product)
-        
+        if (product) {
+            setProductNew(product)
+            setImages(product.images)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [product])
-
 
     return {
         product,
@@ -82,7 +83,7 @@ const UseAddEditProduct = () => {
         images,
         selectImage,
         selectedImage,
-        deleteImage
+        deleteImage,
 
     };
 }

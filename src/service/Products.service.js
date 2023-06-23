@@ -2,9 +2,8 @@ import clienteAxios from "../config/axios";
 
 
 export const getProductsService = async (data) => {
-  console.log(data);
   let query = ""
-  if(data){
+  if (data) {
     query = `?header=${data.header}&type=${data.type}&page=${data.page}&limit=${data.LIMIT}`
   }
   return await clienteAxios.get(`/api/products${query}`);
@@ -45,4 +44,8 @@ export const postSearchProducts = async (data) => {
 
 export const deleteProductService = async (id) => {
   return await clienteAxios.delete(`/api/products/${id}`)
+}
+
+export const putUpdateProductService = async (data) => {
+  return await clienteAxios.put(`api/products/${data._id}`, data)
 }
